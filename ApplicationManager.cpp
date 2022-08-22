@@ -3,6 +3,7 @@
 #include "Actions\AddCircleAction.h"
 #include "Actions\AddTrigAction.h"
 #include "Actions\AddLineAction.h"
+#include "AddSelectAction.h"
 
 
 //Constructor
@@ -48,6 +49,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_LINE:
 			pAct = new AddLineAction(this);
 			break;
+		case SELECT_FIGURE:
+			pAct = new AddSelectAction(this);
+			break;
 			///create AddLineAction here
 
 			break;
@@ -89,6 +93,14 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	///Add your code here to search for a figure given a point x,y	
 
 	return NULL;
+}
+void ApplicationManager::SelectFigure(CFigure* pFig)
+{
+	if (!pFig->IsSelected())
+	{
+		pFig->SetSelected(true);
+		pFig->ChngFillClr('E');
+	}
 }
 //==================================================================================//
 //							Interface Management Functions							//

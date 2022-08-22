@@ -10,6 +10,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_RECT,		//Draw Rectangle
 	DRAW_TRIG,		//Draw Triangle
 	DRAW_CIRC,		//Draw Circle
+	SELECT_FIGURE,	//Select Figure
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color

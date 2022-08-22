@@ -1,3 +1,11 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  CLine.cpp
-  PT-Project.vcxproj -> D:\CIE202 - Project-Requirements - SUM2022\Project Framework\Debug\PT Project.exe
+  cSelect.cpp
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\cSelect.cpp(4,1): error C2512: 'CFigure': no appropriate default constructor available
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\Figures\CFigure.h(8,7): message : see declaration of 'CFigure'
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\cSelect.cpp(13,1): error C2059: syntax error: '}'
+  Output.cpp
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\GUI\Output.cpp(192,36): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+  AddSelectAction.cpp
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\AddSelectAction.cpp(34,25): error C2660: 'ApplicationManager::SelectFigure': function does not take 0 arguments
+C:\Users\aly farag\OneDrive\Documents\GitHub\PaintMaster\ApplicationManager.h(34,7): message : see declaration of 'ApplicationManager::SelectFigure'
+  Generating Code...

@@ -176,6 +176,8 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="AddSelectAction.cpp" />
+    <ClCompile Include="cSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
@@ -213,6 +215,8 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="AddSelectAction.h" />
+    <ClInclude Include="cSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
