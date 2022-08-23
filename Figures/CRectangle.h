@@ -11,6 +11,9 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
+	bool IS_pin_shape(int x, int y);
+	virtual string print();
+
 };
 
 #endif

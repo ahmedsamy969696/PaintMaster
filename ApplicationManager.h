@@ -27,11 +27,14 @@ public:
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
+	int getFigCount();
 	
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	void SelectFigure(CFigure* pFig);
+	void SelectFigure(CFigure* pFig, int& c);
+	int getshape(CFigure*& r, int x, int y);
+	void Change_Current();
 		
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

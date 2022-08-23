@@ -20,10 +20,10 @@ public:
 	bool IsSelected() const;	//check whether fig is selected
 
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	
+	virtual bool IS_pin_shape(int x, int y) = 0;
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
-
+	virtual string print();
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

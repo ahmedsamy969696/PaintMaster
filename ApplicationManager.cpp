@@ -3,7 +3,7 @@
 #include "Actions\AddCircleAction.h"
 #include "Actions\AddTrigAction.h"
 #include "Actions\AddLineAction.h"
-
+#include "AddSelectAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -47,6 +47,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case DRAW_LINE:
 			pAct = new AddLineAction(this);
+			break;
+		case SELECT_FIGURE:
+			pAct = new AddSelectAction(this);
 			break;
 			///create AddLineAction here
 

@@ -12,6 +12,11 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
+bool CFigure::IS_pin_shape(int x, int y)
+{
+	return true;
+}
+
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
@@ -19,5 +24,10 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+}
+
+string CFigure::print()
+{
+	return "This is a Figure.";
 }
 
