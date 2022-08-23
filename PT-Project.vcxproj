@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Actions\AddCircleAction.cpp" />
     <ClCompile Include="Actions\AddLineAction.cpp" />
+    <ClCompile Include="Actions\AddSelectAction.cpp" />
     <ClCompile Include="Actions\AddTrigActions.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -176,12 +177,12 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="AddSelectAction.cpp" />
-    <ClCompile Include="cSelect.cpp" />
+    <ClCompile Include="AddChangeCurrentAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddLineAction.h" />
+    <ClInclude Include="Actions\AddSelectAction.h" />
     <ClInclude Include="Actions\AddTrigAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
@@ -215,8 +216,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
-    <ClInclude Include="AddSelectAction.h" />
-    <ClInclude Include="cSelect.h" />
+    <ClInclude Include="AddChangeCurrentAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

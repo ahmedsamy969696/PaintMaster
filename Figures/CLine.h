@@ -11,6 +11,9 @@ private:
 public:
 	CLine(Point, Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
+	virtual bool IS_pin_shape(int x, int y);
+	virtual string print();
+
 };
 
 #endif

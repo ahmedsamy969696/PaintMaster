@@ -1,5 +1,5 @@
 #include "AddLineAction.h"
-#include "..\Figures\CLine.h"
+#include "../Figures/CLine.h"
 
 #include "..\ApplicationManager.h"
 

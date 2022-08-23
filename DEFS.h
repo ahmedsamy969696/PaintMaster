@@ -11,6 +11,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_TRIG,		//Draw Triangle
 	DRAW_CIRC,		//Draw Circle
 	SELECT_FIGURE,	//Select Figure
+	CHNG_CURRENT,	//Change Color/Border
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color
@@ -43,7 +44,6 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
 	int BorderWdth;	//Width of figure borders
-
 };
 
 #endif

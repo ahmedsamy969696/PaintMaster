@@ -13,6 +13,10 @@ private:
 public:
 	CTriangle(Point, Point,Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
+	float area(int x1, int y1, int x2, int y2, int x3, int y3);
+	virtual bool IS_pin_shape(int x, int y);
+	virtual string print();
+
 };
 
 #endif

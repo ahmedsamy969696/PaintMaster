@@ -1,6 +1,6 @@
 #include "AddTrigAction.h"
-#include "..\Figures\CRectangle.h"
-#include "..\Figures\CTriangle.h"
+#include "../Figures/CRectangle.h"
+#include "../Figures/CTriangle.h"
 
 #include "..\ApplicationManager.h"
 

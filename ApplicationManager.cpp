@@ -3,8 +3,8 @@
 #include "Actions\AddCircleAction.h"
 #include "Actions\AddTrigAction.h"
 #include "Actions\AddLineAction.h"
-#include "AddSelectAction.h"
-
+#include "Actions/AddSelectAction.h"
+#include "AddChangeCurrentAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -52,6 +52,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SELECT_FIGURE:
 			pAct = new AddSelectAction(this);
 			break;
+		case CHNG_CURRENT:
+			pAct = new AddChangeCurrentAction(this);
+			break;
 			///create AddLineAction here
 
 			break;
@@ -72,6 +75,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		delete pAct;	//Action is not needed any more ==> delete it
 		pAct = NULL;
 	}
+}
+int ApplicationManager::getFigCount()
+{
+	return FigCount;
 }
 //==================================================================================//
 //						Figures Management Functions								//
@@ -94,13 +101,75 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
-void ApplicationManager::SelectFigure(CFigure* pFig)
+void ApplicationManager::SelectFigure(CFigure* pFig, int& c)
 {
+	CFigure* pselected; // to know the selected shape, if we unselect another shape.
 	if (!pFig->IsSelected())
 	{
 		pFig->SetSelected(true);
-		pFig->ChngFillClr('E');
+		c++;
+		if (c == 1)
+		{
+			pOut->PrintMessage(pFig->print());
+		}
+		else if (c > 1)
+		{
+			string val;
+			val = to_string(c);
+			pOut->PrintMessage("The number of selected shapes is: " + val);
+		}
+		else
+		{
+			pOut->ClearStatusBar();
+		}
+		//pFig->ChngFillClr('E');
 	}
+	else
+	{
+		pFig->SetSelected(false);
+		c--;
+		if (c == 1)
+		{
+			for (int i = 0; i < FigCount; i++)
+			{
+				if (FigList[i]->IsSelected())
+				{
+					pselected = FigList[i];
+				}
+			}
+			pOut->PrintMessage(pselected->print());
+		}
+		else if (c > 1)
+		{
+			string val;
+			val = to_string(c);
+			pOut->PrintMessage("The number of selected shapes is " + val);
+		}
+		else
+		{
+			pOut->ClearStatusBar();
+		}
+	}
+	
+}
+int ApplicationManager::getshape(CFigure*& r, int x, int y)
+{
+	int temp = 0;
+	for (int i = FigCount-1; i >=0; i--)
+	{
+		if (FigList[i]->IS_pin_shape(x, y))
+		{
+			r = FigList[i];
+			temp = 1;
+			return temp;
+		}
+	}
+	pOut->PrintMessage("Click on a Valid Shape.");
+	return temp;
+}
+void ApplicationManager::Change_Current()
+{
+	
 }
 //==================================================================================//
 //							Interface Management Functions							//

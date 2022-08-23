@@ -148,9 +148,6 @@
     <ClCompile Include="Figures\CCircle.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddCircleAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\AddTrigActions.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -163,11 +160,14 @@
     <ClCompile Include="Figures\CLine.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="AddSelectAction.cpp">
+    <ClCompile Include="Actions\AddSelectAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="cSelect.cpp">
-      <Filter>Figures Classes</Filter>
+    <ClCompile Include="Actions\AddCircleAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="AddChangeCurrentAction.cpp">
+      <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,11 +274,11 @@
     <ClInclude Include="Figures\CLine.h">
       <Filter>Figures Classes</Filter>
     </ClInclude>
-    <ClInclude Include="AddSelectAction.h">
+    <ClInclude Include="Actions\AddSelectAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="cSelect.h">
-      <Filter>Figures Classes</Filter>
+    <ClInclude Include="AddChangeCurrentAction.h">
+      <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
