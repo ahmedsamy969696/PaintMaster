@@ -55,6 +55,7 @@ ActionType Input::GetUserAction() const
 			case ITM_TRIG: return DRAW_TRIG;
 			case ITM_LINE: return DRAW_LINE;
 			case ITM_SELECT: return SELECT_FIGURE;
+			case ITM_COPY: return COPY;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar

@@ -14,7 +14,8 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
+	CFigure* selectedFigure = nullptr;
+	CFigure* copiedFigure = nullptr;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -35,6 +36,9 @@ public:
 	void SelectFigure(CFigure* pFig, int& c);
 	int getshape(CFigure*& r, int x, int y);
 	void Change_Current();
+	void setSelected(CFigure*);
+	void setCopied(CFigure*);
+	CFigure* getSelected();
 		
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

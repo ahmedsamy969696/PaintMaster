@@ -86,6 +86,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_TRIG] = "images\\MenuItems\\Menu_Tri.jpg";
 	MenuItemImages[ITM_LINE] = "images\\MenuItems\\Menu_Line.jpg";
 	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\download.jpg";
+	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Menu_Copy.jpg";
 	MenuItemImages[ITM_CHANGE_CURRENT] = "images\\MenuItems\\Menu_Change_Current.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	

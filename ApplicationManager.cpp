@@ -3,9 +3,12 @@
 #include "Actions\AddCircleAction.h"
 #include "Actions\AddTrigAction.h"
 #include "Actions\AddLineAction.h"
+#include "Actions\AddCopyAction.h"
 #include "Actions/AddSelectAction.h"
 #include "AddChangeCurrentAction.h"
+#include <iostream>
 
+using namespace std;
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -51,6 +54,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SELECT_FIGURE:
 			pAct = new AddSelectAction(this);
+			break;
+		case COPY:
+			pAct = new AddCopyAction(this);
 			break;
 		case CHNG_CURRENT:
 			pAct = new AddChangeCurrentAction(this);
@@ -161,12 +167,30 @@ int ApplicationManager::getshape(CFigure*& r, int x, int y)
 		{
 			r = FigList[i];
 			temp = 1;
+			setSelected(FigList[i]);
 			return temp;
 		}
 	}
 	pOut->PrintMessage("Click on a Valid Shape.");
 	return temp;
 }
+
+void ApplicationManager::setSelected(CFigure* selectedFigure) {
+
+	this->selectedFigure = selectedFigure;
+
+}
+
+CFigure* ApplicationManager::getSelected() {
+
+	return selectedFigure;
+
+}
+
+void ApplicationManager::setCopied(CFigure* selectedFigure) {
+	copiedFigure = selectedFigure;
+}
+
 void ApplicationManager::Change_Current()
 {
 	
