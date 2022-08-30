@@ -56,8 +56,12 @@ ActionType Input::GetUserAction() const
 			case ITM_LINE: return DRAW_LINE;
 			case ITM_SELECT: return SELECT_FIGURE;
 			case ITM_COPY: return COPY;
+			case ITM_CUT: return CUT;
 			case ITM_EXIT: return EXIT;	
-			
+			case ITM_PLAY: return TO_PLAY;
+			case ITM_DELETE: return DELETEE;
+			case ITM_CHANGE_COLOR: return CHNG_DRAW_CLR;
+			case ITM_CHANGE_FILL: return CHNG_FILL_CLR;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -71,13 +75,63 @@ ActionType Input::GetUserAction() const
 		//[3] User clicks on the status bar
 		return STATUS;
 	}
-	else	//GUI is in PLAY mode
+	else if (UI.InterfaceMode == MODE_PLAY)	//GUI is in PLAY mode
 	{
 		///TODO:
 		//perform checks similar to Draw mode checks above
 		//and return the correspoding action
-		return TO_PLAY;	//just for now. This should be updated
-	}	
+
+		int x, y;
+		pWind->WaitMouseClick(x, y);
+
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check which Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+			
+				//case ITM_EXIT_EXIT: return EXIT;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+
+		}
+	}
+	else if (UI.InterfaceMode == MODE_CHN_COLOR)	//GUI is in PLAY mode
+	{
+		///TODO:
+		//perform checks similar to Draw mode checks above
+		//and return the correspoding action
+
+		int x, y;
+		pWind->WaitMouseClick(x, y);
+
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check which Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+
+				case ITM_RED: return CLR_RED;
+				case ITM_BLUE: return CLR_BLUE;
+				case ITM_YELLOW: return CLR_YELLOW;
+				case ITM_DRAW_MODE: return DRAW_MODE;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+
+		}
+	}
 
 }
 /////////////////////////////////

@@ -14,12 +14,12 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-	CFigure* selectedFigure = nullptr;
-	CFigure* copiedFigure = nullptr;
+	CFigure* selected[MaxFigCount];
+	int selectedcounter;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
-
+	
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -29,21 +29,23 @@ public:
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
 	int getFigCount();
-	
+	int mode;
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void SelectFigure(CFigure* pFig, int& c);
 	int getshape(CFigure*& r, int x, int y);
 	void Change_Current();
-	void setSelected(CFigure*);
-	void setCopied(CFigure*);
-	CFigure* getSelected();
-		
+	void setSelected();
+	void setCopied();
+	void setCut();
+	void setDelete();
+	CFigure** getSelected();
+	int getSelectedCount();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
-	void UpdateInterface() const;	//Redraws all the drawing window	
+	void UpdateInterface() const;	//Redraws all the drawing window
 };
 
 #endif

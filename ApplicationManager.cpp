@@ -4,6 +4,12 @@
 #include "Actions\AddTrigAction.h"
 #include "Actions\AddLineAction.h"
 #include "Actions\AddCopyAction.h"
+#include "Actions\AddCutAction.h"
+#include "Actions\AddDeleteAction.h"
+#include "Actions\AddActionSwitchPlay.h"
+#include "Actions\AddChangeColorBar.h"
+#include "Actions\AddChangeColor.h"
+#include "Actions\AddDrawModeAction.h"
 #include "Actions/AddSelectAction.h"
 #include "AddChangeCurrentAction.h"
 #include <iostream>
@@ -58,12 +64,39 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case COPY:
 			pAct = new AddCopyAction(this);
 			break;
-		case CHNG_CURRENT:
-			pAct = new AddChangeCurrentAction(this);
+		case CUT:
+			pAct = new AddCutAction(this);
 			break;
+		case DELETEE:
+			pAct = new AddDeleteAction(this);
+			break;
+		case TO_PLAY:
+			pAct = new AddSwitchPlayAction(this);
+			break;
+		case CHNG_DRAW_CLR:
+			mode = 0;
+			pAct = new AddColorChangeBarAction(this);
+			break;
+		case CHNG_FILL_CLR:
+			mode = 1;
+			pAct = new AddColorChangeBarAction(this);
+			break;
+		case CLR_RED:
+			pAct = new AddColorChangeAction(this,mode, 1);
+			break;
+		case CLR_YELLOW:
+			pAct = new AddColorChangeAction(this,mode, 2);
+			break;
+		case CLR_BLUE:
+			pAct = new AddColorChangeAction(this,mode ,3);
+			break;
+		case DRAW_MODE:
+			pAct = new AddSwitchDrawAction(this);
+			break;
+		//case 
 			///create AddLineAction here
 
-			break;
+			//break;
 
 		case EXIT:
 			///create ExitAction here
@@ -107,6 +140,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+
 void ApplicationManager::SelectFigure(CFigure* pFig, int& c)
 {
 	CFigure* pselected; // to know the selected shape, if we unselect another shape.
@@ -156,7 +190,7 @@ void ApplicationManager::SelectFigure(CFigure* pFig, int& c)
 			pOut->ClearStatusBar();
 		}
 	}
-	
+	setSelected();
 }
 int ApplicationManager::getshape(CFigure*& r, int x, int y)
 {
@@ -167,7 +201,6 @@ int ApplicationManager::getshape(CFigure*& r, int x, int y)
 		{
 			r = FigList[i];
 			temp = 1;
-			setSelected(FigList[i]);
 			return temp;
 		}
 	}
@@ -175,20 +208,75 @@ int ApplicationManager::getshape(CFigure*& r, int x, int y)
 	return temp;
 }
 
-void ApplicationManager::setSelected(CFigure* selectedFigure) {
-
-	this->selectedFigure = selectedFigure;
-
+void ApplicationManager::setSelected() {
+	CFigure* selected[MaxFigCount];
+	selectedcounter = 0;
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->IsSelected())
+		{
+			ApplicationManager::selected[selectedcounter] = FigList[i];
+			selectedcounter += 1;
+		}
+	}
 }
 
-CFigure* ApplicationManager::getSelected() {
-
-	return selectedFigure;
-
+int ApplicationManager::getSelectedCount() {
+	return selectedcounter;
 }
 
-void ApplicationManager::setCopied(CFigure* selectedFigure) {
-	copiedFigure = selectedFigure;
+CFigure** ApplicationManager::getSelected() {
+	return selected;
+}
+
+
+void ApplicationManager::setCopied() {
+	CFigure* copiedFigures[MaxFigCount];
+	for (int i = 0; i < selectedcounter; i++) {
+		copiedFigures[i] = ApplicationManager::selected[i];
+	}
+	for (int i = 0; i < selectedcounter; i++) {
+		cout << selected[i]->print() << endl;
+	}
+}
+
+void ApplicationManager::setDelete() {
+	for (int j = 0; j < selectedcounter; j++) {
+		for (int i = 0; i < FigCount; i++) {
+			if (selected[j] == FigList[i])
+			{
+				delete FigList[i];
+				FigList[i] = NULL;
+				FigCount--;
+				for (int k = i; k < FigCount; k++) {
+					FigList[k] = FigList[k + 1];
+				}
+			}
+		}
+	}
+
+	pOut->ClearDrawArea();
+	UpdateInterface();
+}
+
+void ApplicationManager::setCut() {
+	setCopied();
+	for (int j = 0; j < selectedcounter; j++) {
+		for (int i = 0; i < FigCount; i++) {
+			if (selected[j] == FigList[i])
+			{
+				delete FigList[i];
+				FigList[i] = NULL;
+				FigCount--;
+				for (int k = i; k < FigCount; k++) {
+					FigList[k] = FigList[k + 1];
+				}
+			}
+		}
+	}
+		
+	pOut->ClearDrawArea();
+	UpdateInterface();
 }
 
 void ApplicationManager::Change_Current()
@@ -212,6 +300,7 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

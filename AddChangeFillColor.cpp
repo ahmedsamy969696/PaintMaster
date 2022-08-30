@@ -1,4 +1,4 @@
-#include "AddCopyAction.h"
+#include "AddChangeFillColor.h"
 #include "..\Figures\CRectangle.h"
 
 #include "..\ApplicationManager.h"
@@ -6,18 +6,18 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddCopyAction::AddCopyAction(ApplicationManager* pApp) :Action(pApp)
+AddChangeFillAction::AddChangeFillAction(ApplicationManager* pApp) :Action(pApp)
 {}
 
 
-void AddCopyAction::ReadActionParameters() {
+void AddChangeFillAction::ReadActionParameters() {
 	Output* pOut = pManager->GetOutput();
-	pManager->setCopied();
+	pManager->setCopied(pManager->getSelected());
 	pOut->PrintMessage("Selected Object Is copied");
 }
 
 //Execute the action
-void AddCopyAction::Execute()
+void AddChangeFillAction::Execute()
 {
 	ReadActionParameters();
 }

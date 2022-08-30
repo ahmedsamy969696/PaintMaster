@@ -18,6 +18,13 @@ enum ActionType //The actions supported (you can add more if needed)
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
 	COPY,
+	CUT,
+	CLR_RED,
+	CLR_BLUE,
+	CLR_YELLOW,
+	CHNG_BORDER,
+	DRAW_MODE,
+	DELETEE,
 	RESIZE,			//Resize a figure(s)
 	ROTATE,			//Rotate a figure(s)
 	SEND_BACK,		//Send a figure to the back of all figures
@@ -25,11 +32,13 @@ enum ActionType //The actions supported (you can add more if needed)
 	SAVE,			//Save the whole graph to a file
 	LOAD,			//Load a graph from a file
 	EXIT,			//Exit the application
-
+	RED_ITM,
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
 	EMPTY,			//A click on empty place in the toolbar
-
+	COLOR_RED,
+	COLOR_YELLOW,
+	COLOR_BLUE,
 	TO_DRAW,		//Switch interface to Draw mode
 	TO_PLAY			//Switch interface to Play mode
 
@@ -44,6 +53,7 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	color DrawClr;	//Draw color of the figure
 	color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
+	color PlayBorderColor;
 	int BorderWdth;	//Width of figure borders
 };
 
