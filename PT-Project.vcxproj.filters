@@ -160,11 +160,32 @@
     <ClCompile Include="Figures\CLine.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="AddSelectAction.cpp">
+    <ClCompile Include="Actions\AddCircleAction.cpp" />
+    <ClCompile Include="Actions\AddSelectAction.cpp" />
+    <ClCompile Include="AddChangeCurrentAction.cpp" />
+    <ClCompile Include="Actions\AddCopyAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="cSelect.cpp">
-      <Filter>Figures Classes</Filter>
+    <ClCompile Include="Actions\AddCutAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddActionSwitchPlay.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddActionPickShape.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddChangeColorBar.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddDeleteAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddChangeColor.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddDrawModeAction.cpp">
+      <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,11 +292,31 @@
     <ClInclude Include="Figures\CLine.h">
       <Filter>Figures Classes</Filter>
     </ClInclude>
-    <ClInclude Include="AddSelectAction.h">
+    <ClInclude Include="Actions\AddSelectAction.h" />
+    <ClInclude Include="AddChangeCurrentAction.h" />
+    <ClInclude Include="Actions\AddCopyAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="cSelect.h">
-      <Filter>Figures Classes</Filter>
+    <ClInclude Include="Actions\AddCutAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddActionSwitchPlay.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddActionPickShape.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddChangeColorBar.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddDeleteAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddChangeColor.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddDrawModeAction.h">
+      <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

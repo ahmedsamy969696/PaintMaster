@@ -1,5 +1,5 @@
 #include "Output.h"
-
+#include "..\ApplicationManager.h"
 
 Output::Output()
 {
@@ -55,6 +55,8 @@ window* Output::CreateWind(int w, int h, int x, int y) const
 	return pW;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+
 void Output::CreateStatusBar() const
 {
 	pWind->SetPen(UI.StatusBarColor, 1);
@@ -87,8 +89,14 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_LINE] = "images\\MenuItems\\Menu_Line.jpg";
 	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\download.jpg";
 	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Menu_Copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\MenuItems\\Menu_Cut.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Remove.jpg";
+	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\Menu_Play.jpg";
 	MenuItemImages[ITM_CHANGE_CURRENT] = "images\\MenuItems\\Menu_Change_Current.jpg";
+	MenuItemImages[ITM_CHANGE_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_CHNG_BORDER] = "images\\MenuItems\\Menu_Border.jpg";
+	MenuItemImages[ITM_CHANGE_COLOR] = "images\\MenuItems\\Menu_Color.jpg";
 	
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -96,9 +104,6 @@ void Output::CreateDrawToolBar() const
 	//Draw menu item one image at a time
 	for(int i=0; i<DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
-
-
-
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
@@ -108,10 +113,39 @@ void Output::CreateDrawToolBar() const
 
 void Output::CreatePlayToolBar() const
 {
+	pWind->SetPen(UI.BkGrndColor, 1);
+	pWind->SetBrush(UI.BkGrndColor);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 	UI.InterfaceMode = MODE_PLAY;
-	///TODO: write code to create Play mode menu
+	string MenuItemImages[PLAY_ITM_COUNT];
+	MenuItemImages[ITM_DRAW] = "images\\MenuItems\\Menu_Play.jpg";
+	MenuItemImages[ITM_PICK_SHAPE] = "images\\MenuItems\\Menu_Pick_Shape.jpg";
+	for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::CreateChangeColorBar() const
+{
+
+	pWind->SetPen(UI.BkGrndColor, 1);
+	pWind->SetBrush(UI.BkGrndColor);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
+	UI.InterfaceMode = MODE_CHN_COLOR;
+	string MenuItemImages[COLOR_ITM_COUNT];
+	MenuItemImages[ITM_RED] = "images\\MenuItems\\Menu_Red.jpg";
+	MenuItemImages[ITM_YELLOW] = "images\\MenuItems\\Menu_Yellow.jpg";
+	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_Blue.jpg";
+	MenuItemImages[ITM_DRAW_MODE] = "images\\MenuItems\\Mode_Draw.jpg";
+	for (int i = 0; i < COLOR_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+}
 
 void Output::ClearDrawArea() const
 {
