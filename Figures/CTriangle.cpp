@@ -35,6 +35,18 @@ bool CTriangle::IS_pin_shape(int x, int y)
 	}
 }
 
+Point CTriangle::getCorner1() {
+	return Corner1;
+}
+
+Point CTriangle::getCorner2() {
+	return Corner2;
+}
+
+Point CTriangle::getCorner3() {
+	return Corner3;
+}
+
 string CTriangle::print()
 {
 	string values;;

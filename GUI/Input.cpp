@@ -57,11 +57,13 @@ ActionType Input::GetUserAction() const
 			case ITM_SELECT: return SELECT_FIGURE;
 			case ITM_COPY: return COPY;
 			case ITM_CUT: return CUT;
+			case ITM_PASTE: return PASTE;
 			case ITM_EXIT: return EXIT;	
 			case ITM_PLAY: return TO_PLAY;
 			case ITM_DELETE: return DELETEE;
 			case ITM_CHANGE_COLOR: return CHNG_DRAW_CLR;
 			case ITM_CHANGE_FILL: return CHNG_FILL_CLR;
+			case ITM_CHNG_BORDER: return CHNG_BORDER;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}

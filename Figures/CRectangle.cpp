@@ -26,6 +26,16 @@ bool CRectangle::IS_pin_shape(int x, int y)
 	
 }
 
+Point CRectangle::getCorner1() {
+	return Corner1;
+}
+
+Point CRectangle::getCorner2() {
+	return Corner2;
+}
+
+
+
 string CRectangle::print()
 {
 	string values;

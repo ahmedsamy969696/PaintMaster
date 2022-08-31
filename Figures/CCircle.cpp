@@ -5,6 +5,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInf
 {
 	Center = P1;
 	EndRad = P2;
+	radius = sqrt(pow((EndRad.x - Center.x), 2) + pow((EndRad.y - Center.y), 2));
 }
 
 
@@ -12,6 +13,10 @@ void CCircle::Draw(Output* pOut) const
 {
 	//Call Output::DrawRect to draw a rectangle on the screen	
 	pOut->DrawCircle(Center, EndRad, FigGfxInfo, Selected);
+}
+
+Point CCircle::getradius() {
+	return EndRad;
 }
 
 bool CCircle::IS_pin_shape(int x, int y)
@@ -25,6 +30,14 @@ bool CCircle::IS_pin_shape(int x, int y)
 	{
 		return false;
 	}
+}
+
+Point CCircle::getCenter() {
+	return Center;
+}
+
+int CCircle::getRadius() {
+	return radius;
 }
 
 string CCircle::print()

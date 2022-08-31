@@ -16,7 +16,9 @@ public:
 	float area(int x1, int y1, int x2, int y2, int x3, int y3);
 	virtual bool IS_pin_shape(int x, int y);
 	virtual string print();
-
+	Point getCorner1();
+	Point getCorner2();
+	Point getCorner3();
 };
 
 #endif

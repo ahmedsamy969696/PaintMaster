@@ -28,6 +28,14 @@ bool CLine::IS_pin_shape(int x, int y)
 	}
 }
 
+Point CLine::getP1() {
+	return Corner1;
+}
+
+Point CLine::getP2() {
+	return Corner2;
+}
+
 string CLine::print()
 {
 	string values;

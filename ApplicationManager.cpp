@@ -10,7 +10,13 @@
 #include "Actions\AddChangeColorBar.h"
 #include "Actions\AddChangeColor.h"
 #include "Actions\AddDrawModeAction.h"
+#include "Actions\AddActionChangeBorder.h"
+#include "Actions\AddActionPaste.h"
 #include "Actions/AddSelectAction.h"
+#include "Figures\CRectangle.h"
+#include "Figures\CCircle.h"
+#include "Figures\CLine.h"
+#include "Figures\CTriangle.h"
 #include "AddChangeCurrentAction.h"
 #include <iostream>
 
@@ -90,10 +96,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CLR_BLUE:
 			pAct = new AddColorChangeAction(this,mode ,3);
 			break;
+		case CHNG_BORDER:
+			pAct = new AddActionChangeBorder(this);
+			break;
 		case DRAW_MODE:
 			pAct = new AddSwitchDrawAction(this);
 			break;
-		//case 
+		case PASTE:
+			pAct = new AddActionPaste(this);
+			break;
+		//case
 			///create AddLineAction here
 
 			//break;
@@ -231,13 +243,54 @@ CFigure** ApplicationManager::getSelected() {
 
 
 void ApplicationManager::setCopied() {
-	CFigure* copiedFigures[MaxFigCount];
+	copiedFigures[MaxFigCount];
+	copiedcounter = selectedcounter;
 	for (int i = 0; i < selectedcounter; i++) {
-		copiedFigures[i] = ApplicationManager::selected[i];
+		CCircle* posscir = dynamic_cast<CCircle*>(selected[i]);
+		CRectangle* possrect = dynamic_cast<CRectangle*>(selected[i]);
+		CTriangle* posstrig = dynamic_cast<CTriangle*>(selected[i]);
+		CLine* possline = dynamic_cast<CLine*>(selected[i]);
+		if (posscir != NULL) {
+			Point orgcen = posscir->getCenter();
+			Point orgrad = posscir->getradius();
+			GfxInfo inf = posscir->getGfxInfo();
+			CCircle* newCir = new CCircle(orgcen, orgrad, inf);
+			copiedFigures[i] = newCir;
+		}
+		if (possrect != NULL) {
+			Point A = possrect->getCorner1();
+			Point B = possrect->getCorner2();
+			GfxInfo inf = possrect->getGfxInfo();
+			CRectangle* R = new CRectangle(A, B, inf);
+			copiedFigures[i] = R;
+		}
+		if (posstrig != NULL) {
+			Point A = posstrig->getCorner1();
+			Point B = posstrig->getCorner2();
+			Point C = posstrig->getCorner3();
+			GfxInfo inf = posstrig->getGfxInfo();
+			CTriangle* T = new CTriangle(A, B, C, inf);
+			copiedFigures[i] = T;
+		}
+		if (possline != NULL) {
+			Point A = possline->getP1();
+			Point B = possline->getP2();
+			GfxInfo inf = possline->getGfxInfo();
+			CLine* L = new CLine(A, B, inf);
+			copiedFigures[i] = L;
+		}
 	}
 	for (int i = 0; i < selectedcounter; i++) {
-		cout << selected[i]->print() << endl;
+		cout << copiedFigures[i]->print() << endl;
 	}
+}
+
+int ApplicationManager::getCopiedCounter() {
+	return copiedcounter;
+}
+
+CFigure** ApplicationManager::getCopied() {
+	return copiedFigures;
 }
 
 void ApplicationManager::setDelete() {
@@ -274,7 +327,6 @@ void ApplicationManager::setCut() {
 			}
 		}
 	}
-		
 	pOut->ClearDrawArea();
 	UpdateInterface();
 }

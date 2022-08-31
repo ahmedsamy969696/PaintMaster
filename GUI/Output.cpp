@@ -29,7 +29,6 @@ Output::Output()
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
 	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project");
-	
 	CreateDrawToolBar();
 	CreateStatusBar();
 }
@@ -90,6 +89,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\download.jpg";
 	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Menu_Copy.jpg";
 	MenuItemImages[ITM_CUT] = "images\\MenuItems\\Menu_Cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\MenuItems\\Menu_Paste.jpg";
 	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Remove.jpg";
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\Menu_Play.jpg";
 	MenuItemImages[ITM_CHANGE_CURRENT] = "images\\MenuItems\\Menu_Change_Current.jpg";

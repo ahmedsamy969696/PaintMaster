@@ -17,6 +17,10 @@ bool CFigure::IS_pin_shape(int x, int y)
 	return true;
 }
 
+void CFigure::ChngBorderWidth(int width) {
+	FigGfxInfo.BorderWdth = width;
+}
+
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
@@ -24,6 +28,10 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+}
+
+GfxInfo CFigure::getGfxInfo() {
+	return FigGfxInfo;
 }
 
 string CFigure::print()

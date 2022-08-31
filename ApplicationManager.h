@@ -15,7 +15,9 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* selected[MaxFigCount];
+	CFigure* copiedFigures[MaxFigCount];
 	int selectedcounter;
+	int copiedcounter;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -41,7 +43,9 @@ public:
 	void setCut();
 	void setDelete();
 	CFigure** getSelected();
+	CFigure** getCopied();
 	int getSelectedCount();
+	int getCopiedCounter();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

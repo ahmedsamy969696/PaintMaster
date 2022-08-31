@@ -13,7 +13,8 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual bool IS_pin_shape(int x, int y);
 	virtual string print();
-
+	Point getP1();
+	Point getP2();
 };
 
 #endif
