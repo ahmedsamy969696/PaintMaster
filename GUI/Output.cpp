@@ -17,7 +17,7 @@ Output::Output()
 	UI.MenuItemWidth = 80;
 	
 	UI.DrawColor = BLUE;	//Drawing color
-	UI.FillColor = GREEN;	//Filling color
+	UI.FillColor = NULL;	//Filling color
 	UI.MsgColor = RED;		//Messages color
 	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
@@ -94,6 +94,8 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\Menu_Play.jpg";
 	MenuItemImages[ITM_CHANGE_CURRENT] = "images\\MenuItems\\Menu_Change_Current.jpg";
 	MenuItemImages[ITM_CHANGE_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	MenuItemImages[ITM_CHNG_BORDER] = "images\\MenuItems\\Menu_Border.jpg";
 	MenuItemImages[ITM_CHANGE_COLOR] = "images\\MenuItems\\Menu_Color.jpg";
@@ -281,4 +283,6 @@ Output::~Output()
 {
 	delete pWind;
 }
+
+
 

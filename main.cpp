@@ -1,4 +1,7 @@
 #include "ApplicationManager.h"
+#include <iostream>
+
+using namespace std;
 
 
 int main()
@@ -20,7 +23,6 @@ int main()
 		AppManager.UpdateInterface();	
 
 	}while(ActType != EXIT);
-	
 
 	
 	return 0;

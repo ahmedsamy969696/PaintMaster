@@ -22,6 +22,7 @@ void AddRectAction::ReadActionParameters()
 
 	pOut->PrintMessage("New Rectangle: Click at second corner");
 
+
 	//Read 2nd corner and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 

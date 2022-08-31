@@ -13,7 +13,9 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual bool IS_pin_shape(int x, int y);
 	virtual string print();
-
+	Point getcornar1() const;
+	Point getcornar2() const;
+	string GetAllData(int ID);
 };
 
 #endif
