@@ -1,5 +1,7 @@
 #include "AddActionPaste.h"
 #include "..\Figures\CRectangle.h"
+#include "AddActionPaste.h"
+#include "..\Figures\CRectangle.h"
 #include "..\Figures\CCircle.h"
 #include "..\Figures\CLine.h"
 #include "..\Figures\CTriangle.h"
@@ -8,12 +10,10 @@
 #include "..\GUI\Output.h"
 #include <iostream>
 
-
 AddActionPaste::AddActionPaste(ApplicationManager* pApp) :Action(pApp)
 {
 	this->pApp = pApp;
 }
-
 
 void AddActionPaste::ReadActionParameters() {
 	Output* pOut = pManager->GetOutput();
