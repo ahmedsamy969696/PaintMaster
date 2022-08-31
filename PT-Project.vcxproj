@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
+    <ClCompile Include="..\PaintMaster\Actions\AddActionChangeBorder.cpp" />
     <ClCompile Include="Actions\AddActionPickShape.cpp" />
     <ClCompile Include="Actions\AddActionSwitchPlay.cpp" />
     <ClCompile Include="Actions\AddChangeColor.cpp" />
@@ -192,6 +193,7 @@
   <ItemGroup>
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
+    <ClInclude Include="..\PaintMaster\Actions\AddActionChangeBorder.h" />
     <ClInclude Include="Actions\AddActionPickShape.h" />
     <ClInclude Include="Actions\AddActionSwitchPlay.h" />
     <ClInclude Include="Actions\AddChangeColor.h" />
