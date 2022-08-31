@@ -19,6 +19,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	MOVE,			//Move a figure(s)
 	COPY,
 	CUT,
+	CHNG_DEFAULT,
 	PASTE,
 	CLR_RED,
 	CLR_BLUE,

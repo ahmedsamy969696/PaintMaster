@@ -12,6 +12,7 @@
 #include "Actions\AddDrawModeAction.h"
 #include "Actions\AddActionChangeBorder.h"
 #include "Actions\AddActionPaste.h"
+#include "Actions\ActionChangeDefault.h"
 #include "Actions/AddSelectAction.h"
 #include "Figures\CRectangle.h"
 #include "Figures\CCircle.h"
@@ -94,6 +95,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CHNG_DRAW_CLR:
 			mode = 0;
 			pAct = new AddColorChangeBarAction(this);
+			break;
+		case CHNG_DEFAULT:
+			pAct = new AddChangeDefaultAction(this);
 			break;
 		case CHNG_FILL_CLR:
 			mode = 1;
@@ -434,17 +438,17 @@ bool operator==(color c1, color c2)
 
 color ApplicationManager::ConvertToColor(string s)
 {
-	if (s == "BLACK")
+	if (s == "black")
 		return BLACK;
-	if (s == "BLUE")
+	if (s == "blue")
 		return BLUE;
-	if (s == "WHITE")
+	if (s == "white")
 		return WHITE;
-	if (s == "RED")
+	if (s == "red")
 		return RED;
-	if (s == "YELLOW")
+	if (s == "yellow")
 		return YELLOW;
-	if (s == "GREEN")
+	if (s == "green")
 		return GREEN;
 	if (s == "LIGHTGOLDENRODYELLOW")
 		return LIGHTGOLDENRODYELLOW;

@@ -128,6 +128,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\ActionChangeDefault.cpp" />
     <ClCompile Include="Actions\AddActionChangeBorder.cpp" />
     <ClCompile Include="Actions\AddActionPaste.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="AddChangeCurrentAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\ActionChangeDefault.h" />
     <ClInclude Include="Actions\AddActionChangeBorder.h" />
     <ClInclude Include="Actions\AddActionPaste.h" />
     <ClInclude Include="Actions\ActionLoad.h" />

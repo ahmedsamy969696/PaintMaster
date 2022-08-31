@@ -6,7 +6,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1300;
+	UI.width = 1600;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy =5;
@@ -178,6 +178,18 @@ color Output::getCrntFillColor() const	//get current filling color
 	
 int Output::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
+
+void Output::setCrntDrawColor(color drwclr) {
+	UI.DrawColor = drwclr;
+}
+
+void Output::setCrntFillColor(color fillclr) {
+	UI.FillColor = fillclr;
+}
+
+void Output::setCrntBrdrWidth(int brdrwidth) {
+	UI.PenWidth = brdrwidth;
+}
 
 //======================================================================================//
 //								Figures Drawing Functions								//

@@ -57,6 +57,7 @@ ActionType Input::GetUserAction() const
 			case ITM_SELECT: return SELECT_FIGURE;
 			case ITM_COPY: return COPY;
 			case ITM_CUT: return CUT;
+			case ITM_CHANGE_CURRENT: return CHNG_DEFAULT;
 			case ITM_PASTE: return PASTE;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
