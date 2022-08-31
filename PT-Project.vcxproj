@@ -128,6 +128,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\PaintMaster\Actions\AddActionChangeBorder.cpp" />
     <ClCompile Include="Actions\AddActionPickShape.cpp" />
     <ClCompile Include="Actions\AddActionSwitchPlay.cpp" />
     <ClCompile Include="Actions\AddChangeColor.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="AddChangeCurrentAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\PaintMaster\Actions\AddActionChangeBorder.h" />
     <ClInclude Include="Actions\AddActionPickShape.h" />
     <ClInclude Include="Actions\AddActionSwitchPlay.h" />
     <ClInclude Include="Actions\AddChangeColor.h" />
