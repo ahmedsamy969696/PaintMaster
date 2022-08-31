@@ -353,7 +353,7 @@ void window::ChangeDrawStyle(drawstyle dsNewStyle) {
 		break;
 
       default:
-        cout << "Fatal Error: You have tried to use an invalid or unimplemented drawstyle!" << endl;
+        cout << "MAYBE! Fatal Error: You have tried to use an invalid or unimplemented drawstyle!" << endl;
 		break;
   	}
 
@@ -805,7 +805,7 @@ void window::DrawLine(const int iX1, const int iY1, const int iX2, const int iY2
 		break;
 		
 	  default:
-		cout << "Fatal Error: You have tried to use an invalid or unimplemented drawstyle!" << endl;
+		cout << "SURE? Fatal Error: You have tried to use an invalid or unimplemented drawstyle!" << endl;
 		break;
 	}
 }
@@ -1425,86 +1425,87 @@ void window::StoreImage(image &imgThis, const unsigned usX, const unsigned short
 
 void window::Print() {
 
-    PRINTDLG  pdlgInfo;
-    DOCINFO diStuff = { sizeof(DOCINFO), NULL, NULL };
-    HDC dcPrinter;
-    
-    int iPrinterWidth, iPrinterHeight;
-    int iXPos, iYPos;
+	PRINTDLG  pdlgInfo;
+	DOCINFO diStuff = { sizeof(DOCINFO), NULL, NULL };
+	HDC dcPrinter;
 
-    ProcessMessage(); // Kludge
-    
-    if(bDoubleBuffer != true) {
-        MessageBox(hwndWindow, "Double-buffering must be enabled for printing to work.  Sorry.", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
-    }
-    
-    memset(&pdlgInfo, 0, sizeof(PRINTDLG));
-    
-    pdlgInfo.lStructSize = sizeof(PRINTDLG);
-    pdlgInfo.hwndOwner = hwndWindow;
-    pdlgInfo.hDevMode = NULL;
-    pdlgInfo.hDevNames = NULL;
-    
-    pdlgInfo.Flags = PD_NOPAGENUMS | PD_NOSELECTION | PD_RETURNDC | PD_USEDEVMODECOPIESANDCOLLATE;
+	int iPrinterWidth, iPrinterHeight;
+	int iXPos, iYPos;
 
-    if(PrintDlg(&pdlgInfo) == false) {
-        return;
-    }
+	ProcessMessage(); // Kludge
 
-    dcPrinter = pdlgInfo.hDC;
-    
-    if((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_BITBLT) != RC_BITBLT) {
-        MessageBox(hwndWindow, "Your printer does not support bitblts.  Sorry", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
-        return;
-    }
-    
-    if((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_BITMAP64) != RC_BITMAP64) {
-        MessageBox(hwndWindow, "Your printer does not support bitmaps larger than 64K.  Sorry.", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
-        return;
-    }
+	if (bDoubleBuffer != true) {
+		MessageBox(hwndWindow, "Double-buffering must be enabled for printing to work.  Sorry.", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
+	}
 
-    if(StartDoc(dcPrinter, &diStuff) <= 0) {
-        cout << "Fatal Error: Failed to StartDoc in Print!" << endl;
-    }    
-    
-    if(StartPage(dcPrinter) <= 0) {
-        cout << "Fatal Error: Failed to StartPage in Print!" << endl;
-    }  
-      
-    if((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_STRETCHBLT) != RC_STRETCHBLT) {
-    
-        // Center the image horizontally
-        iXPos = (GetDeviceCaps(dcPrinter, HORZRES) - iWindowWidth) >> 1;
-        // Center the image vertically
-        iYPos = (GetDeviceCaps(dcPrinter, VERTRES) - iWindowHeight) >> 1;
+	memset(&pdlgInfo, 0, sizeof(PRINTDLG));
+
+	pdlgInfo.lStructSize = sizeof(PRINTDLG);
+	pdlgInfo.hwndOwner = hwndWindow;
+	pdlgInfo.hDevMode = NULL;
+	pdlgInfo.hDevNames = NULL;
+
+	pdlgInfo.Flags = PD_NOPAGENUMS | PD_NOSELECTION | PD_RETURNDC | PD_USEDEVMODECOPIESANDCOLLATE;
+
+	if (PrintDlg(&pdlgInfo) == false) {
+		return;
+	}
+
+	dcPrinter = pdlgInfo.hDC;
+
+	if ((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_BITBLT) != RC_BITBLT) {
+		MessageBox(hwndWindow, "Your printer does not support bitblts.  Sorry", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
+		return;
+	}
+
+	if ((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_BITMAP64) != RC_BITMAP64) {
+		MessageBox(hwndWindow, "Your printer does not support bitmaps larger than 64K.  Sorry.", "Graphics Library", MB_ICONEXCLAMATION | MB_OK);
+		return;
+	}
+
+	if (StartDoc(dcPrinter, &diStuff) <= 0) {
+		cout << "Fatal Error: Failed to StartDoc in Print!" << endl;
+	}
+
+	if (StartPage(dcPrinter) <= 0) {
+		cout << "Fatal Error: Failed to StartPage in Print!" << endl;
+	}
+
+	if ((GetDeviceCaps(dcPrinter, RASTERCAPS) & RC_STRETCHBLT) != RC_STRETCHBLT) {
+
+		// Center the image horizontally
+		iXPos = (GetDeviceCaps(dcPrinter, HORZRES) - iWindowWidth) >> 1;
+		// Center the image vertically
+		iYPos = (GetDeviceCaps(dcPrinter, VERTRES) - iWindowHeight) >> 1;
 
 
-        if(BitBlt(dcPrinter, iXPos, iYPos, iWindowWidth, iWindowHeight, dcActive, 0, 0, SRCCOPY) != TRUE) {
-            cout << "Fatal Error: Failed to BitBlt in Print!" << endl;   
-        }
+		if (BitBlt(dcPrinter, iXPos, iYPos, iWindowWidth, iWindowHeight, dcActive, 0, 0, SRCCOPY) != TRUE) {
+			cout << "Fatal Error: Failed to BitBlt in Print!" << endl;
+		}
 
-    } else {
-        iPrinterWidth = GetDeviceCaps(dcPrinter, HORZRES);
-        iPrinterHeight = int(double(iPrinterWidth) * double(iWindowHeight) / double(iWindowWidth));
+	}
+	else {
+		iPrinterWidth = GetDeviceCaps(dcPrinter, HORZRES);
+		iPrinterHeight = int(double(iPrinterWidth) * double(iWindowHeight) / double(iWindowWidth));
 
-        // Center the image vertically
-        iYPos = (GetDeviceCaps(dcPrinter, VERTRES) - iPrinterHeight) >> 1;
+		// Center the image vertically
+		iYPos = (GetDeviceCaps(dcPrinter, VERTRES) - iPrinterHeight) >> 1;
 
-        if(StretchBlt(dcPrinter, 0, iYPos, iPrinterWidth, iPrinterHeight, dcActive, 0, 0, iWindowWidth, iWindowHeight, SRCCOPY) != TRUE) {
-            cout << "Fatal Error: Failed to StretchBlt in Print!" << endl;
-        }
-        
-    }
-    
-    if(EndPage(dcPrinter) <= 0) {
-        cout << "Fatal Error: Failed to EndPage in Print!" << endl;
-    }    
-    
-    if(EndDoc(dcPrinter) <= 0) {
-        cout << "Fatal Error: Failed to EndDoc in Print!" << endl;
-    }    
-    
-  	if(DeleteDC(dcPrinter) != TRUE) {
-  	    cout << "Fatal Error: Failed to delete dcPrinter in Print!" << endl;
-  	}
+		if (StretchBlt(dcPrinter, 0, iYPos, iPrinterWidth, iPrinterHeight, dcActive, 0, 0, iWindowWidth, iWindowHeight, SRCCOPY) != TRUE) {
+			cout << "Fatal Error: Failed to StretchBlt in Print!" << endl;
+		}
+
+	}
+
+	if (EndPage(dcPrinter) <= 0) {
+		cout << "Fatal Error: Failed to EndPage in Print!" << endl;
+	}
+
+	if (EndDoc(dcPrinter) <= 0) {
+		cout << "Fatal Error: Failed to EndDoc in Print!" << endl;
+	}
+
+	if (DeleteDC(dcPrinter) != TRUE) {
+		cout << "Fatal Error: Failed to delete dcPrinter in Print!" << endl;
+	}
 }

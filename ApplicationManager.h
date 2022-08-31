@@ -21,6 +21,9 @@ private:
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
+	int* selectarray = new int[100];
+	CFigure* SLObj = nullptr;
+
 	
 public:	
 	ApplicationManager(); 
@@ -50,6 +53,12 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
+	void SetObjSEL(CFigure* SEL);
+	string ConvertToString(color cc);  //Convert from Color Type to String Type
+	color ConvertToColor(string s);
+	void LoadFig();
+	string GetFigListData();
+	bool savethis;
 };
 
 #endif

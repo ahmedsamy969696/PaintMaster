@@ -47,3 +47,33 @@ string CCircle::print()
 	values = "This is a Circle.The ID: " + to_string(ID) + ". The Point of the center: (" + to_string(Center.x) + ", " + to_string(Center.y) + "). The Point on the border: (" + to_string(EndRad.x) + ", " + to_string(EndRad.y) + "). The Radious is: " + to_string(rad) + ".";
 	return values;
 }
+
+Point CCircle::Getcenter() const
+{
+	return Center;
+}
+int CCircle::GetR() const
+{
+	int R;
+	R = sqrt(pow((Center.x - EndRad.x), 2) + pow((Center.y - EndRad.y), 2));
+	return R;
+}
+string CCircle::GetAllData(int ID)
+{
+	string data = "CIRC " + to_string(ID) + "  " +
+		to_string(Center.x) + "  " +
+		to_string(Center.y) + "  " +
+		to_string(EndRad.x) + "  " +
+		to_string(EndRad.y) + "  ";
+	data += ConvertToString2(FigGfxInfo.DrawClr) + " ";
+	if (FigGfxInfo.isFilled)
+	{
+		data += ConvertToString2(FigGfxInfo.FillClr);
+	}
+	else
+	{
+		data += "NO_FILL";
+	}
+	data += "\n";
+	return data;
+}

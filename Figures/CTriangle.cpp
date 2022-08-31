@@ -53,3 +53,40 @@ string CTriangle::print()
 	values = "This is a TRIANGLE.The ID: " + to_string(ID) + ". First Point: (" + to_string(Corner1.x) + ", " + to_string(Corner1.y) + "). Second Point: (" + to_string(Corner2.x) + ", " + to_string(Corner2.y) + "). Third Point: (" + to_string(Corner3.x) + ", " + to_string(Corner3.y) + ")" + "The Area of the Triangle is: " + to_string(area(Corner1.x, Corner1.y, Corner2.x, Corner2.y, Corner3.x, Corner3.y)) + ".";
 	return values;
 }
+
+Point CTriangle::getcornar1() const
+{
+	return Corner1;
+}
+
+Point CTriangle::getcornar2() const
+{
+	return Corner2;
+}
+
+Point CTriangle::getcornar3() const
+{
+	return Corner3;
+}
+
+string CTriangle::GetAllData(int ID)
+{
+	string data = "TRIG " + to_string(ID) + "  " +
+		to_string(Corner1.x) + "  " +
+		to_string(Corner1.y) + "  " +
+		to_string(Corner2.x) + "  " +
+		to_string(Corner2.y) + "  " +
+		to_string(Corner3.x) + "  " +
+		to_string(Corner3.y) + "  ";
+	data += ConvertToString2(FigGfxInfo.DrawClr) + " ";
+	if (FigGfxInfo.isFilled)
+	{
+		data += ConvertToString2(FigGfxInfo.FillClr);
+	}
+	else
+	{
+		data += "NO_FILL";
+	}
+	data += "\n";
+	return data;
+}

@@ -19,6 +19,12 @@
 #include "Figures\CTriangle.h"
 #include "AddChangeCurrentAction.h"
 #include <iostream>
+#include"Figures/CRectangle.h"
+#include"Figures/CCircle.h"
+#include"Figures/CLine.h"
+#include"Figures/CTriangle.h"
+#include "Actions/ActionSave.h"
+#include "Actions/ActionLoad.h"
 
 using namespace std;
 //Constructor
@@ -73,6 +79,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CUT:
 			pAct = new AddCutAction(this);
 			break;
+		case SAVE:
+			pAct = new ActionSave(this, FigCount);
+			break;
+		case LOAD:
+			pAct = new ActionLoad(this);
+			break;
 		case DELETEE:
 			pAct = new AddDeleteAction(this);
 			break;
@@ -112,6 +124,24 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case EXIT:
 			///create ExitAction here
+			if (savethis)
+			{
+				break;
+			}
+			else {
+				string answer;
+				Output* pOut = GetOutput();
+				Input* pIn = GetInput();
+				pOut->PrintMessage("Do you want to save? (y or n)     ");
+				answer = pIn->GetSrting(pOut);  //read the file name
+				if (answer == "y")
+				{
+					pAct = new ActionSave(this, FigCount);
+				}
+				else {
+					break;
+				}
+			}
 			
 			break;
 		
@@ -120,7 +150,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	
 	//Execute the created action
-	if(pAct != NULL)
+	if (dynamic_cast<ActionLoad*>(pAct) != NULL)
+	{
+		pAct-> Execute();//Execute
+		delete pAct;	//Action is not needed any more ==> delete it
+		pAct = NULL;
+	}
+	else if(pAct != NULL)
 	{
 		pAct->Execute();//Execute
 		delete pAct;	//Action is not needed any more ==> delete it
@@ -142,16 +178,29 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;	
 }
 ////////////////////////////////////////////////////////////////////////////////////
-CFigure *ApplicationManager::GetFigure(int x, int y) const
+
+string ApplicationManager::ConvertToString(color cc)   //Convert from Color Type to String Type
 {
-	//If a figure is found return a pointer to it.
-	//if this point (x,y) does not belong to any figure return NULL
-
-
-	///Add your code here to search for a figure given a point x,y	
-
-	return NULL;
+	if (cc == BLACK) return "BLACK";
+	else if (cc == WHITE) return "WHITE";
+	else if (cc == BLUE) return "BLUE";
+	else if (cc == RED) return "RED";
+	else if (cc == YELLOW) return "YELLOW";
+	else if (cc == GREEN) return "GREEN";
+	else if (cc == GREY) return "GREY";
+	else if (cc == LIGHTGOLDENRODYELLOW) return "LIGHTGOLDENRODYELLOW";
+	return "COLOR";
 }
+string ApplicationManager::GetFigListData()
+{
+	string AllData = "";
+	for (int i = 0; i < FigCount; ++i)
+	{
+		AllData += FigList[i]->GetAllData(i + 1);
+	}
+	return AllData;
+}
+
 
 void ApplicationManager::SelectFigure(CFigure* pFig, int& c)
 {
@@ -345,6 +394,12 @@ void ApplicationManager::UpdateInterface() const
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
+
+void ApplicationManager::SetObjSEL(CFigure* SEL)
+{
+	SLObj = SEL;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
@@ -362,4 +417,43 @@ ApplicationManager::~ApplicationManager()
 	delete pIn;
 	delete pOut;
 	
+}
+
+//////////////////////////////////////*********************//////////////////////////////////////////
+bool operator==(color c1, color c2) 
+{
+
+  if (c1.ucBlue == c2.ucBlue &&
+    c1.ucGreen == c2.ucGreen &&
+    c1.ucRed == c2.ucRed)
+    return true;
+
+  else return false;
+
+}
+
+color ApplicationManager::ConvertToColor(string s)
+{
+	if (s == "BLACK")
+		return BLACK;
+	if (s == "BLUE")
+		return BLUE;
+	if (s == "WHITE")
+		return WHITE;
+	if (s == "RED")
+		return RED;
+	if (s == "YELLOW")
+		return YELLOW;
+	if (s == "GREEN")
+		return GREEN;
+	if (s == "LIGHTGOLDENRODYELLOW")
+		return LIGHTGOLDENRODYELLOW;
+	return GREY;
+}
+
+void ApplicationManager::LoadFig()  //for each figure FigList, make it points to NULL 
+{
+	for (int i = 0; i < FigCount; ++i)
+		FigList[i] = NULL;
+	FigCount = 0;
 }

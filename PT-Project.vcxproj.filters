@@ -191,6 +191,10 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddActionPaste.cpp">
+    <ClCompile Include="Actions\ActionSave.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionLoad.cpp" />
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -328,6 +332,10 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddActionPaste.h">
+    <ClInclude Include="Actions\ActionSave.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionLoad.h" />
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

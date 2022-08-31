@@ -15,6 +15,9 @@ public:
 	virtual string print();
 	Point getCorner1();
 	Point getCorner2();
+	Point GetCornar1() const;
+	Point GetCornar2() const;
+	string GetAllData(int ID);
 };
 
 #endif

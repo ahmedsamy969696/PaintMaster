@@ -19,6 +19,10 @@ public:
 	Point getCorner1();
 	Point getCorner2();
 	Point getCorner3();
+	Point getcornar1() const;
+	Point getcornar2() const;
+	Point getcornar3() const;
+	string GetAllData(int ID);
 };
 
 #endif

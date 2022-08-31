@@ -14,6 +14,7 @@ protected:
 	/// Add more parameters if needed.
 
 public:
+	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
@@ -26,6 +27,9 @@ public:
 	GfxInfo getGfxInfo();
 	//changes the figure's filling color
 	virtual string print();
+	string ConvertToString2(color cc) const;
+	virtual string GetAllData(int ID) = 0;
+
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

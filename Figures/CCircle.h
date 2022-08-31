@@ -17,6 +17,9 @@ public:
 	Point getCenter();
 	Point getradius();
 	int getRadius();
+	Point Getcenter() const;
+	int GetR() const;
+	string GetAllData(int ID);
 
 };
 
