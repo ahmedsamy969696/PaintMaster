@@ -26,7 +26,12 @@ void AddRectAction::ReadActionParameters()
 	//Read 2nd corner and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	RectGfxInfo.isFilled = false;	//default is not filled
+	if (UI.FillColor == NULL) {
+		RectGfxInfo.isFilled = false;
+	}
+	else {
+		RectGfxInfo.isFilled = true;
+	}
 	//get drawing, filling colors and pen width from the interface
 	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RectGfxInfo.FillClr = pOut->getCrntFillColor();

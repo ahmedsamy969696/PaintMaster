@@ -31,7 +31,12 @@ void AddtrigAction::ReadActionParameters()
 	//Read 2nd corner and store in point P2
 	pIn->GetPointClicked(P3.x, P3.y);
 
-	TrigGfxInfo.isFilled = false;	//default is not filled
+	if (UI.FillColor == NULL) {
+		TrigGfxInfo.isFilled = false;
+	}
+	else {
+		TrigGfxInfo.isFilled = true;
+	}
 	//get drawing, filling colors and pen width from the interface
 	TrigGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	TrigGfxInfo.FillClr = pOut->getCrntFillColor();
