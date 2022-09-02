@@ -33,6 +33,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_CHNG_BORDER,
 	ITM_DELETE,
 	//TODO: Add more items names here
+	ITM_UNDO,
 	ITM_SAVE,
 	ITM_LOAD,
 	ITM_EXIT,		//Exit item

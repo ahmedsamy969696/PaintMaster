@@ -31,6 +31,7 @@ public:
 	//changes the figure's filling color
 	virtual string print();
 	string ConvertToString2(color cc) const;
+	int getid() { return ID; }
 	virtual string GetAllData(int ID) = 0;
 	virtual void setcolor_before_disappear(color c);
 	void setcolor();

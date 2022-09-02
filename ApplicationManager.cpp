@@ -30,6 +30,8 @@
 #include"Figures/CTriangle.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionLoad.h"
+#include "Actions/UndoFunc.h"
+
 
 using namespace std;
 //Constructor
@@ -59,7 +61,7 @@ ActionType ApplicationManager::GetUserAction() const
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
-	
+
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
@@ -83,6 +85,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case CUT:
 			pAct = new AddCutAction(this);
+			break;
+		case UNDO:
+			pAct = new UndoFunc(this);
 			break;
 		case SAVE:
 			pAct = new ActionSave(this, FigCount);
@@ -382,6 +387,7 @@ void ApplicationManager::setDelete() {
 	UpdateInterface();
 }
 
+
 void ApplicationManager::setCut() {
 	setCopied();
 	for (int j = 0; j < selectedcounter; j++) {
@@ -506,4 +512,15 @@ void ApplicationManager::LoadFig()  //for each figure FigList, make it points to
 	for (int i = 0; i < FigCount; ++i)
 		FigList[i] = NULL;
 	FigCount = 0;
+}
+
+void ApplicationManager::deletelastshape(int op)
+{
+		delete FigList[op];
+		FigList[op] = NULL;
+		cout << "Here your undo:  " << op << endl;
+		FigCount--;
+		for (int k = op; k < FigCount; k++) {
+			FigList[k] = FigList[k + 1];
+		}
 }

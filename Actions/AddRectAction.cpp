@@ -5,6 +5,8 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include <iostream>
+using namespace std;
 
 AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
 {}
@@ -52,4 +54,9 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	operations[op_num++] = R->GetAllData(R->getid());
+	cout << operations[0];
+	op_num++;
 }
+
+
