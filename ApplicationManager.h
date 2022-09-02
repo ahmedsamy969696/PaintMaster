@@ -59,6 +59,7 @@ public:
 	void LoadFig();
 	string GetFigListData();
 	bool savethis;
+	void deletelastshape(int num);
 };
 
 #endif

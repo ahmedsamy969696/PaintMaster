@@ -1,8 +1,9 @@
 #include "ApplicationManager.h"
 #include <iostream>
-
+#include "Actions\Action.h"
 using namespace std;
 
+int Action::op_num = 0;
 
 int main()
 {

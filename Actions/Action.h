@@ -12,6 +12,8 @@ class Action
 {
 protected:
 	ApplicationManager *pManager;	//Actions needs AppMngr to do their job
+	string operations[100];
+	static int op_num;
 
 public:
 
