@@ -11,6 +11,10 @@ protected:
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
+	bool Hidden = false;
+	color col;
+	color color_before_disappear = col;
+	bool Filled = false;
 	/// Add more parameters if needed.
 
 public:
@@ -18,7 +22,6 @@ public:
 	CFigure(GfxInfo FigureGfxInfo);
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	virtual bool IS_pin_shape(int x, int y) = 0;
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
@@ -29,7 +32,14 @@ public:
 	virtual string print();
 	string ConvertToString2(color cc) const;
 	virtual string GetAllData(int ID) = 0;
-
+	virtual void setcolor_before_disappear(color c);
+	void setcolor();
+	bool Is_Filled();
+	color getcolor() const;
+	bool Is_Hidden() const;
+	color get_before_disappear() const;
+	void appear();
+	void disappear();
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

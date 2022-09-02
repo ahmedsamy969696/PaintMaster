@@ -13,6 +13,10 @@
 #include "Actions\AddActionChangeBorder.h"
 #include "Actions\AddActionPaste.h"
 #include "Actions\ActionChangeDefault.h"
+#include "Actions\AddActionRestart.h"
+#include "Actions\BothPickHideAction.h"
+#include "Actions\TypePickHideAction.h"
+#include "Actions\FillPickHideAction.h"
 #include "Actions/AddSelectAction.h"
 #include "Figures\CRectangle.h"
 #include "Figures\CCircle.h"
@@ -121,6 +125,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PASTE:
 			pAct = new AddActionPaste(this);
 			break;
+		case TYPE_PICK_HIDE:
+			pAct = new TypePickHideAction(this);
+			break;
+		case FILL_PICK_HIDE:
+			pAct = new FillPickHideAction(this);
+			break;
+		case BOTH_PICK_HIDE:
+			pAct = new BothPickHideAction(this);
+			break;
+		case RESTART:
+			pAct = new AddActionRestart(this);
+			break;
+
 		//case
 			///create AddLineAction here
 
@@ -384,6 +401,16 @@ void ApplicationManager::setCut() {
 	UpdateInterface();
 }
 
+CFigure* ApplicationManager::getfig(int i) const
+{
+	return FigList[i];
+}
+
+color ApplicationManager::getcol(int i) const
+{
+	return FigList[i]->getcolor();
+}
+
 void ApplicationManager::Change_Current()
 {
 	
@@ -437,6 +464,25 @@ bool operator==(color c1, color c2)
 }
 
 color ApplicationManager::ConvertToColor(string s)
+{
+	if (s == "BLACK")
+		return BLACK;
+	if (s == "BLUE")
+		return BLUE;
+	if (s == "WHITE")
+		return WHITE;
+	if (s == "RED")
+		return RED;
+	if (s == "YELLOW")
+		return YELLOW;
+	if (s == "GREEN")
+		return GREEN;
+	if (s == "LIGHTGOLDENRODYELLOW")
+		return LIGHTGOLDENRODYELLOW;
+	return GREY;
+}
+
+color ApplicationManager::ConvertToColor2(string s)
 {
 	if (s == "black")
 		return BLACK;

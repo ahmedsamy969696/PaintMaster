@@ -26,7 +26,11 @@ enum ActionType //The actions supported (you can add more if needed)
 	CLR_YELLOW,
 	CHNG_BORDER,
 	DRAW_MODE,
+	RESTART,
 	DELETEE,
+	TYPE_PICK_HIDE, //Pick and hide, by type
+	FILL_PICK_HIDE,
+	BOTH_PICK_HIDE,
 	RESIZE,			//Resize a figure(s)
 	ROTATE,			//Rotate a figure(s)
 	SEND_BACK,		//Send a figure to the back of all figures

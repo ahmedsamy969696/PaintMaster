@@ -54,8 +54,11 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void SetObjSEL(CFigure* SEL);
+	CFigure* getfig(int i) const;
+	color getcol(int i) const;
 	string ConvertToString(color cc);  //Convert from Color Type to String Type
 	color ConvertToColor(string s);
+	color ConvertToColor2(string);
 	void LoadFig();
 	string GetFigListData();
 	bool savethis;

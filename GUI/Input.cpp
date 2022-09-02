@@ -99,7 +99,11 @@ ActionType Input::GetUserAction() const
 
 			switch (ClickedItemOrder)
 			{
-			
+			case ITM_DRAW: return DRAW_MODE;
+			case ITM_RESTART: return RESTART;
+			case ITM_TYPE_PICK_HIDE: return TYPE_PICK_HIDE;
+			case ITM_FILL_PICK_HIDE: return FILL_PICK_HIDE;
+			case ITM_BOTH_PICK_HIDE: return BOTH_PICK_HIDE;
 				//case ITM_EXIT_EXIT: return EXIT;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -141,6 +145,15 @@ ActionType Input::GetUserAction() const
 }
 /////////////////////////////////
 	
+string Input::getUIMode() {
+	if (UI.InterfaceMode == MODE_PLAY) {
+		return "play";
+	}
+	else {
+		return "draw";
+	}
+}
+
 Input::~Input()
 {
 }
