@@ -5,7 +5,7 @@ Output::Output()
 {
 	// Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
-	UI.width = 1500;
+	UI.width = 1600;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
@@ -115,7 +115,10 @@ void Output::CreatePlayToolBar() const
 	UI.InterfaceMode = MODE_PLAY;
 	string MenuItemImages[PLAY_ITM_COUNT];
 	MenuItemImages[ITM_DRAW] = "images\\MenuItems\\Menu_Play.jpg";
-	MenuItemImages[ITM_PICK_SHAPE] = "images\\MenuItems\\Menu_Pick_Shape.jpg";
+	MenuItemImages[ITM_TYPE_PICK_HIDE] = "images\\MenuItems\\Menu_Pick_Shape.jpg";
+	MenuItemImages[ITM_FILL_PICK_HIDE] = "images\\MenuItems\\FILL_PICK_HIDE.jpg";
+	MenuItemImages[ITM_BOTH_PICK_HIDE] = "images\\MenuItems\\BOTH_PICK_HIDE.jpg";
+	MenuItemImages[ITM_RESTART] = "images\\MenuItems\\Menu_Restart.jpg";
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 	// Draw a line under the toolbar
@@ -197,76 +200,172 @@ void Output::setCrntBrdrWidth(int brdrwidth)
 //								Figures Drawing Functions								//
 //======================================================================================//
 
-void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected, bool Hidden) const
 {
 	color DrawingClr;
 	if (selected)
-		DrawingClr = UI.HighlightColor; // Figure should be drawn highlighted
-	else
-		DrawingClr = RectGfxInfo.DrawClr;
-
-	pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
-
-	drawstyle style;
-	if (RectGfxInfo.isFilled)
 	{
-		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		DrawingClr = UI.HighlightColor;					   // Figure should be drawn highlighted
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
+
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
+	}
+	else if (Hidden)
+	{
+		DrawingClr = UI.BkGrndColor;
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
+
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(UI.BkGrndColor);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 	}
 	else
-		style = FRAME;
-
-	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-}
-
-void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
-{
-	color DrawingClr;
-	if (selected)
-		DrawingClr = UI.HighlightColor; // Figure should be drawn highlighted
-	else
+	{
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
 
-	drawstyle style;
-	if (RectGfxInfo.isFilled)
-	{
-		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 	}
-	else
-		style = FRAME;
-
-	pWind->DrawCircle(P1.x, P1.y, sqrt((P2.x - P1.x) * (P2.x - P1.x) + (P2.y - P1.y) * (P2.y - P1.y)), style);
 }
-void Output::DrawTrig(Point P1, Point P2, Point P3, GfxInfo TrigGfxInfo, bool selected) const
+
+void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected, bool Hidden) const
 {
 	color DrawingClr;
 	if (selected)
+	{
 		DrawingClr = UI.HighlightColor; // Figure should be drawn highlighted
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawCircle(P1.x, P1.y, sqrt((P2.x - P1.x) * (P2.x - P1.x) + (P2.y - P1.y) * (P2.y - P1.y)), style);
+	}
+	else if (Hidden)
+	{
+		DrawingClr = UI.BkGrndColor;
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(UI.BkGrndColor);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawCircle(P1.x, P1.y, sqrt((P2.x - P1.x) * (P2.x - P1.x) + (P2.y - P1.y) * (P2.y - P1.y)), style);
+	}
 	else
+	{
+		DrawingClr = RectGfxInfo.DrawClr;
+
+		pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth); // Set Drawing color & width
+
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawCircle(P1.x, P1.y, sqrt((P2.x - P1.x) * (P2.x - P1.x) + (P2.y - P1.y) * (P2.y - P1.y)), style);
+	}
+}
+void Output::DrawTrig(Point P1, Point P2, Point P3, GfxInfo TrigGfxInfo, bool selected, bool Hidden) const
+{
+	color DrawingClr;
+	if (selected)
+	{
+		DrawingClr = UI.HighlightColor;					   // Figure should be drawn highlighted
+		pWind->SetPen(DrawingClr, TrigGfxInfo.BorderWdth); // Set Drawing color & width
+
+		drawstyle style;
+		if (TrigGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(TrigGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
+	}
+	else if (Hidden)
+	{
+		DrawingClr = UI.BkGrndColor;
+		pWind->SetPen(DrawingClr, TrigGfxInfo.BorderWdth); // Set Drawing color & width
+
+		drawstyle style;
+		if (TrigGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(UI.BkGrndColor);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
+	}
+	else
+	{
 		DrawingClr = TrigGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, TrigGfxInfo.BorderWdth); // Set Drawing color & width
+		pWind->SetPen(DrawingClr, TrigGfxInfo.BorderWdth); // Set Drawing color & width
 
-	drawstyle style;
-	if (TrigGfxInfo.isFilled)
-	{
-		style = FILLED;
-		pWind->SetBrush(TrigGfxInfo.FillClr);
+		drawstyle style;
+		if (TrigGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(TrigGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
 	}
-	else
-		style = FRAME;
-
-	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
 }
 
-void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected) const
+void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected, bool Hidden) const
 {
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; // Figure should be drawn highlighted
+	else if (Hidden)
+		DrawingClr = UI.BkGrndColor;
 	else
 		DrawingClr = LineGfxInfo.DrawClr;
 
